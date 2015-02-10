@@ -14,6 +14,7 @@
 
 <body>
 
+    <!-- HOME PAGE -->
     <div id="home" class="container hidden">
         <header>
             <h1>HOMELETTE</h1>
@@ -29,6 +30,8 @@
         </section>
     </div>
 
+
+    <!-- SEARCH PAGE -->
     <div id="search" class="container">
         <header>
             <h1>HOMELETTE</h1>
@@ -37,6 +40,50 @@
         <div>
             <div class="col-md-3">
                 <h2>My dinner</h2>
+
+                <form class="form-inline">
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <label for="people">People</label>
+                            <input id="people" type="number" class="form-control" value="1" />
+                        </div>
+                    </div>
+                </form>
+
+                <div id="summary">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Dish Name</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>4</th>
+                                <th>Lasagne</th>
+                                <th>77.20</th>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Pending</th>
+                                <th>0.00</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>SEK</th>
+                                <th>0.00</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <button class="btn btn-primary btn-block">Confirm Dinner</button>
+                </div>
+
             </div>
             <div class="col-md-9">
                 <div class="search-box">
@@ -45,36 +92,26 @@
                         <div class="form-group">
 
                             <div class="input-group">
-                                <input type="search" class="form-control" id="search-keywords" placeholder="Enter key words">
-                                <div class="input-group-addon">search</div>
+                                <input type="text" class="form-control" placeholder="Enter key words...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">      search</button>
+                                </span>
                             </div>
-
-                            <label for="exampleInputName2">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail2">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                            <select type="type" class="form-control" id="type" placeholder="Dish">
+                                <option>Main</option>
+                                <option>Salads</option>
+                                <option>Starter</option>
+                                <option>Dessert</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-default">Send invitation</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- <div class="container">
-		<h1>Dinner planner</h1>
-		<div id="exampleView">
-			<div>
-				Number of guests: <span id="numberOfGuests"></span>
-			</div>
-			<div>
-          <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
-			</div>
-		</div>
-	</div> -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
