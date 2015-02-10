@@ -1,0 +1,50 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
+.home {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url(../images/familydinner.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+.home-header {
+    background: rgba(227, 225, 114, 0.79);
+    padding: 25px;
+}
+.home-header h1 {
+    margin: 0px 10px;
+    padding: 0px;
+    display: inline-block;
+    color: #222222;
+    font-size: 48px;
+    font-weight: 700;
+}
+.home-header h2 {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    color: #222222;
+    font-size: 20px;
+    font-weight: 400;
+}
+.home-intro {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    position: absolute;
+    bottom: 30px;
+    left: 35px;
+}
+.home-intro h3 {
+	color: #222222;
+    margin-top: 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #222222;
+}
+.home-intro-start {
+	margin-top: 30px;
+}
