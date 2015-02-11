@@ -6,7 +6,8 @@ var DinnerModel = function() {
 
 	this.NumberOfGuests;
 	this.SelectedDishes = [];
-	
+	this.AllIngredients;
+	this.TotalMenuPrice;
 	
 	this.setNumberOfGuests = function(num) {
 		this.NumberOfGuests=num;
@@ -41,12 +42,25 @@ var DinnerModel = function() {
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 2
-		
+		var index;
+		this.AllIngredients=[];
+		for(index=0; index<this.SelectedDishes.length; index++){
+			this.AllIngredients = this.AllIngredients.concat(this.SelectedDishes[index].ingredients);
+		}
+		return this.AllIngredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
 		//TODO Lab 2
+		this.TotalMenuPrice=0;
+		var guests=this.getNumberOfGuests();
+		var ingr=this.getAllIngredients();
+		var index;
+		for(index=0; index<ingr.length; index++){
+			this.TotalMenuPrice= ingr[index].price * guests + this.TotalMenuPrice;
+		}
+		return this.TotalMenuPrice;
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -73,6 +87,11 @@ var DinnerModel = function() {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		//TODO Lab 2
+		var index;
+		for(index=0; index<this.SelectedDishes.length; index++){
+			if (this.SelectedDishes[index].id === id) 
+				this.SelectedDishes.splice(index,1);
+		}
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
@@ -360,21 +379,3 @@ var DinnerModel = function() {
 
 }
 
-
-//the following lines are for testing
-/* var myDinner= new DinnerModel;
-myDinner.setNumberOfGuests(3);
-var guests= myDinner.getNumberOfGuests();
-console.log(guests);
-myDinner.addDishToMenu(1);
-var menu= myDinner.getFullMenu();
-console.log("menu 1", menu);
-
-myDinner.addDishToMenu(2);
-menu= myDinner.getFullMenu();
-console.log("\n menu 2", menu);
-myDinner.addDishToMenu(100);
-menu= myDinner.getFullMenu();
-console.log("\n menu 3", menu);
-console.log(myDinner.getSelectedDish('main dish'));
-*/
