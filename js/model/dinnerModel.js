@@ -4,29 +4,44 @@ var DinnerModel = function() {
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 
-
+	this.NumberOfGuests;
+	this.SelectedDishes = [];
+	
+	
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 2
+		this.NumberOfGuests=num;
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
 		//TODO Lab 2
+		return this.NumberOfGuests;
 	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		//TODO Lab 2
+		var index;
+		for	(index = 0; index < this.SelectedDishes.length; index++) {
+    		id1=this.SelectedDishes[index].id;
+    		if (this.getDish(id1).type === type){
+				return this.SelectedDishes[index];
+			}
+		}
+		return null;
+
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
 		//TODO Lab 2
+		return this.SelectedDishes;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 2
+		var Ingredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -38,6 +53,21 @@ var DinnerModel = function() {
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
 		//TODO Lab 2 
+		var index,
+		id1,
+		flag=0;
+		if (this.SelectedDishes.length===0) this.SelectedDishes[0]=this.getDish(id)
+		else{
+			for	(index = 0; index < this.SelectedDishes.length; index++) {
+    			id1=this.SelectedDishes[index].id;
+    			if (this.getDish(id1).type === this.getDish(id).type){
+					this.SelectedDishes[index] = this.getDish(id);
+					flag=1;
+					break;
+				}
+			}
+			if (flag===0) this.SelectedDishes[this.SelectedDishes.length] = this.getDish(id);
+		}
 	}
 
 	//Removes dish from menu
@@ -329,3 +359,18 @@ var DinnerModel = function() {
 	];
 
 }
+var myDinner= new DinnerModel;
+myDinner.setNumberOfGuests(3);
+var guests= myDinner.getNumberOfGuests();
+console.log(guests);
+myDinner.addDishToMenu(1);
+var menu= myDinner.getFullMenu();
+console.log("menu 1", menu);
+
+myDinner.addDishToMenu(2);
+menu= myDinner.getFullMenu();
+console.log("\n menu 2", menu);
+myDinner.addDishToMenu(100);
+menu= myDinner.getFullMenu();
+console.log("\n menu 3", menu);
+console.log(myDinner.getSelectedDish('main dish'));
