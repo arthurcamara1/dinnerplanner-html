@@ -41,7 +41,7 @@ var DinnerModel = function() {
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		//TODO Lab 2
-		var Ingredients;
+		
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -359,7 +359,10 @@ var DinnerModel = function() {
 	];
 
 }
-var myDinner= new DinnerModel;
+
+
+//the following lines are for testing
+/* var myDinner= new DinnerModel;
 myDinner.setNumberOfGuests(3);
 var guests= myDinner.getNumberOfGuests();
 console.log(guests);
@@ -374,3 +377,4 @@ myDinner.addDishToMenu(100);
 menu= myDinner.getFullMenu();
 console.log("\n menu 3", menu);
 console.log(myDinner.getSelectedDish('main dish'));
+*/
