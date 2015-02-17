@@ -62,6 +62,18 @@ var DinnerModel = function() {
 		}
 		return this.TotalMenuPrice;
 	}
+	
+	this.getDishPrice = function(id) {
+		//TODO Lab 2
+		this.price=0;
+		var dish= this.getDish(id);
+		var guests=this.getNumberOfGuests();
+		var index;
+		for(index=0; index<dish.ingredients.length; index++){
+			this.price= dish.ingredients[index].price * guests + this.price;
+		}
+		return this.price;
+	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.

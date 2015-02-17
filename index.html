@@ -16,7 +16,7 @@
 <body>
 
     <!-- HOME PAGE -->
-    <div id="home" class="home hidden">
+    <div id="home" class="container-fluid">
         <div class="container-fluid header">
             <h1>HOMELETTE</h1>
             <h2>From the best chefs in the world directly into your kitchen</h2>
@@ -27,7 +27,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <div class="col-md-6 home-intro-start">
                     <p>Start quickly</p>
-                    <button class="btn btn-lg btn-primary btn-block">Create new dinner</button>
+                    <button class="btn btn-lg btn-warning btn-block">Create new dinner</button>
                 </div>
             </section>
         </div>
@@ -35,7 +35,91 @@
 
 
     <!-- SEARCH PAGE -->
-    <div id="search" class="container-fluid">
+    <div id="search" class= "hidden">
+
+        <div class="row-fluid header">
+            <div class="span12">
+                <h1>HOMELETTE</h1>
+                <h2>From the best chefs in the world directly into your kitchen</h2>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-3">
+                <h2>My dinner</h2>
+
+                <form class="form-inline">
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <label for="people">People</label>
+                            <input id="people" type="number" class="form-control" value="1" />
+                        </div>
+                    </div>
+                </form>
+
+                <div id="summary">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Dish Name</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                               
+                                
+                                
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Pending</th>
+                                <th>0.00</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>SEK</th>
+                                <th>0.00</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <button class="btn btn-warning btn-block">Confirm Dinner</button>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="search-box">
+                    <h2 class="text-uppercase">Select dish</h2>
+                    <form class="form-inline">
+                        <div class="form-group">
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter key words...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">      search</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select type="type" class="form-control" id="type" placeholder="Dish">
+                                <option>Main</option>
+                                <option>Salads</option>
+                                <option>Starter</option>
+                                <option>Dessert</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div id="dishes"></div>
+            </div>
+        </div>
+    </div>
+
+<div id="screen_after" class="hidden">
 
         <div class="row-fluid header">
             <div class="span12">
@@ -82,12 +166,12 @@
                             <tr>
                                 <th></th>
                                 <th>SEK</th>
-                                <th>0.00</th>
+                                <th>77.20</th>
                             </tr>
                         </tfoot>
                     </table>
 
-                    <button class="btn btn-primary btn-block">Confirm Dinner</button>
+                    <button class="btn btn-warning btn-block">Confirm Dinner</button>
                 </div>
 
             </div>
@@ -114,12 +198,117 @@
                         </div>
                     </form>
                 </div>
-                <div id="dishes"></div>
+                <div id="select"></div>
             </div>
         </div>
     </div>
+	
+	<!-- OVERVIEW PAGE -->
+    <div id="overview" class= "hidden">
 
+        <div class="row-fluid header">
+            <div class="span12">
+                <h1>HOMELETTE</h1>
+                <h2>From the best chefs in the world directly into your kitchen</h2>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-6">
+                <h2>My dinner: 4 people</h2>
+            </div>
+            <div class="col-md-offset-9">
+            <p> <br> </p>
+               <button class="btn btn-warning">Go back and edit dinner</button>
+            </div>
+            <div class="col-md-10">
+				<table >
+					<tr>
+						<th>
+							<div id="selected_dishes"></div>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							
+						</th>
+					</tr>
+				</table>
+                <div class="col-md-2 col-md-offset-5">  
+					<button class="btn btn-lg btn-warning ">Print Full Recipe</button>
+                </div>
+            </div>
+			<div class="col-md-2 col-md-offset-10" >
+                <div id="price"> </div>
+            </div>
+			
+        </div>
+    </div>
+    
+    <!-- DINNER PREPARATION -->
+    <div id="dish_overview" class="hidden">
 
+        <div class="row-fluid header">
+            <div class="span12">
+                <h1>HOMELETTE</h1>
+                <h2>From the best chefs in the world directly into your kitchen</h2>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="col-md-3">
+                <h2>My dinner</h2>
+
+                <form class="form-inline">
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <label for="people">People</label>
+                            <input id="people" type="number" class="form-control" value="1" />
+                        </div>
+                    </div>
+                </form>
+
+                <div id="summary">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Dish Name</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Pending</th>
+                                <th>77.20</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>SEK</th>
+                                <th>77.20</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <button class="btn btn-warning btn-block">Confirm Dinner</button>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div id="dish"></div>
+                <button class="btn btn-warning">Back to Select Dish</button>
+            </div>
+            <div class="col-md-offset-7">
+				<h3>Ingredients For 4 people</h3>
+                <div id="ingredients"></div>
+            </div>
+        </div>
+    </div>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
@@ -128,6 +317,10 @@
     <!-- The application JavaScript code -->
     <script src="js/model/dinnerModel.js"></script>
     <script src="js/view/dishesView.js"></script>
+    <script src="js/view/totalpriceView.js"></script>
+    <script src="js/view/selecteddishesView.js"></script>
+    <script src="js/view/ingredientsView.js"></script>
+    <script src="js/view/dishoverviewView.js"></script>
     <script src="js/app.js"></script>
 </body>
 
