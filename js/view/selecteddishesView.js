@@ -1,14 +1,12 @@
 //ExampleView Object constructor
 var selecteddishesView = function(container, model) {
 
-    // Get all the relevant elements of the view (ones that show data
-    // and/or ones that responded to interaction)
-
     this.render = function() {
         model.addDishToMenu(2);
 		model.addDishToMenu(100);
 		model.setNumberOfGuests(4);
 		var dishes = model.getFullMenu();
+        var price = model.getTotalMenuPrice();
         for (var i = 0; i < dishes.length; i++) {
             var dish = dishes[i];
 			var price =model.getDishPrice(dish.id);

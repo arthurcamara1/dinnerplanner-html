@@ -1,9 +1,6 @@
 //ExampleView Object constructor
 var dishesView = function(container, model) {
 
-    // Get all the relevant elements of the view (ones that show data
-    // and/or ones that responded to interaction)
-
     this.render = function() {
         var dishes = model.getAllDishes("main dish");
         for (var i = 0; i < dishes.length; i++) {

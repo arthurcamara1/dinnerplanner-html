@@ -9,11 +9,7 @@ $(function() {
 	dView1.render();
 	var sView = new selecteddishesView($("#selected_dishes"), model);
 	sView.render();
-	var pView = new totalpriceView($("#price"), model);
-	pView.render();
-	var iView = new ingredientsView($("#ingredients"), model);
-	iView.render();
-	var dishView = new dishoverviewView($("#dish"), model);
+	var dishView = new dishoverviewView($("#sdish"), model);
 	dishView.render();
 	
 });

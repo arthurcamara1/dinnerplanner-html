@@ -16,7 +16,7 @@
 <body>
 
     <!-- HOME PAGE -->
-    <div id="home" class="container-fluid">
+    <div id="home" class=" home hidden">
         <div class="container-fluid header">
             <h1>HOMELETTE</h1>
             <h2>From the best chefs in the world directly into your kitchen</h2>
@@ -35,9 +35,9 @@
 
 
     <!-- SEARCH PAGE -->
-    <div id="search" class= "hidden">
+    <div id="search" class= "search hidden">
 
-        <div class="row-fluid header">
+        <div class="row-fluid header1">
             <div class="span12">
                 <h1>HOMELETTE</h1>
                 <h2>From the best chefs in the world directly into your kitchen</h2>
@@ -91,7 +91,7 @@
                 </div>
 
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" >
                 <div class="search-box">
                     <h2 class="text-uppercase">Select dish</h2>
                     <form class="form-inline">
@@ -100,7 +100,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Enter key words...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">      search</button>
+                                <button class="btn btn-warning" type="button">      search</button>
                                 </span>
                             </div>
                         </div>
@@ -119,9 +119,9 @@
         </div>
     </div>
 
-<div id="screen_after" class="hidden">
+<div id="screen_after" class="screen_after hidden">
 
-        <div class="row-fluid header">
+        <div class="row-fluid header1">
             <div class="span12">
                 <h1>HOMELETTE</h1>
                 <h2>From the best chefs in the world directly into your kitchen</h2>
@@ -204,15 +204,15 @@
     </div>
 	
 	<!-- OVERVIEW PAGE -->
-    <div id="overview" class= "hidden">
+    <div id="overview" class= "overview container-fluid">
 
-        <div class="row-fluid header">
+        <div class="row-fluid header1">
             <div class="span12">
                 <h1>HOMELETTE</h1>
                 <h2>From the best chefs in the world directly into your kitchen</h2>
             </div>
         </div>
-        <div class="row-fluid">
+        <div class="row-fluid mydinner">
             <div class="col-md-6">
                 <h2>My dinner: 4 people</h2>
             </div>
@@ -223,14 +223,14 @@
             <div class="col-md-10">
 				<table >
 					<tr>
-						<th>
+						<td>
 							<div id="selected_dishes"></div>
-						</th>
+						</td>
 					</tr>
 					<tr>
-						<th>
+						<td>
 							
-						</th>
+						</td>
 					</tr>
 				</table>
                 <div class="col-md-2 col-md-offset-5">  
@@ -244,10 +244,10 @@
         </div>
     </div>
     
-    <!-- DINNER PREPARATION -->
-    <div id="dish_overview" class="hidden">
+    <!-- DISH OVEVIEW -->
+    <div id="dish_overview" class="dish_overview hidden">
 
-        <div class="row-fluid header">
+        <div class="row-fluid header1">
             <div class="span12">
                 <h1>HOMELETTE</h1>
                 <h2>From the best chefs in the world directly into your kitchen</h2>
@@ -299,13 +299,8 @@
                 </div>
 
             </div>
-            <div class="col-md-4">
-                <div id="dish"></div>
-                <button class="btn btn-warning">Back to Select Dish</button>
-            </div>
-            <div class="col-md-offset-7">
-				<h3>Ingredients For 4 people</h3>
-                <div id="ingredients"></div>
+            <div class="col-md-9">
+                <div id="sdish"></div>
             </div>
         </div>
     </div>
@@ -319,7 +314,6 @@
     <script src="js/view/dishesView.js"></script>
     <script src="js/view/totalpriceView.js"></script>
     <script src="js/view/selecteddishesView.js"></script>
-    <script src="js/view/ingredientsView.js"></script>
     <script src="js/view/dishoverviewView.js"></script>
     <script src="js/app.js"></script>
 </body>
