@@ -17,7 +17,8 @@ var dishoverviewView = function(container, model) {
             html1= html1+ ingredientsTemplate(ing,guests);
         }
         html = html + "<table id=ingredients>" + html1 ;
-        html += " <tr style= 'border-top: 1px solid #000000'> <td colspan='2' style= 'text-align: left' > <button class='btn btn-warning'>Confirm Dish</button> </td> <td> SEK </td>"
+        html += " <tr style= 'border-top: 1px solid #000000'> <td colspan='2' style= 'text-align: left' >";
+        html += " <button class='btn btn-warning'>Confirm Dish</button> </td> <td> SEK </td>";
         html += " <td></td><td>" + price + " </td> </tr>" ;
         html +="</table> </div>";
         container.append(html);
