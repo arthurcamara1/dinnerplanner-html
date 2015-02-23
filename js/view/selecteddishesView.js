@@ -5,7 +5,7 @@ var selecteddishesView = function(container, model) {
 		var dishes = model.getFullMenu();
         var price = model.getTotalMenuPrice();
         var html;
-        html = "<div class=' doverview col-md-9'>";
+        html = "<div class='doverview col-md-9'>";
 
         
         for (var i = 0; i < dishes.length; i++) {
@@ -15,7 +15,7 @@ var selecteddishesView = function(container, model) {
         };
         html += "</div>";
         html += "<div class='col-md-3'>";
-        html += "<h4> Total Price: </br> </h4>";
+        html += "<h4> Total Price: </h4>";
         html += "<p class='price'>" + price + "</p>";
         html += "</div>";
         html += "<div class= 'col-md-12'>";
@@ -30,7 +30,7 @@ var selecteddishesView = function(container, model) {
 function sdishTemplate(dish,price) {
     var html = "<div class='dish col-md-3'>";
     html += "<div class='img' style='background-image: url(images/" + dish.image + ")'/>";
-    html += "<p class='title'>" + dish.name + "<blah/p>";
+    html += "<p class='title'>" + dish.name + "</p>";
     html += "<p class='price'>" + price + "</p>";
     html += "</div>";
     return html;

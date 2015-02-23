@@ -71,10 +71,11 @@ body {
     font-weight: bold;
 }
 
-#prep
+#prep{
     margin-top: 20px;
-   
 }
+   
+
 
 #prep .img {
     overflow: hidden;
@@ -96,13 +97,17 @@ body {
     width: 95%;
 }
 
+
 table {
     width: 100%;
-
 }
 
 th {
     height: 50px;
+}
+td {
+    padding: 15px;
+     vertical-align: top;
 }
 
 .home {
@@ -187,4 +192,5 @@ th {
 }
 .doverview{
     border-right: 1px solid #222222;
+    text-align:center;
 }

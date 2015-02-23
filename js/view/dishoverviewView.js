@@ -10,7 +10,7 @@ var dishoverviewView = function(container, model) {
         html=overview(dish);
         html += "<button class='btn btn-warning'>Back to Select Dish</button>";
         html += "</div>";
-        html +="<div class='col-md-offset-4 ingr-table'>";
+        html +="<div class='col-md-offset-5 ingr-table'>";
         html +="<h3>Ingredients For 4 people</h3>";
         for (var i = 0; i < dish.ingredients.length; i++) {
             var ing = dish.ingredients[i];
@@ -28,7 +28,7 @@ var dishoverviewView = function(container, model) {
 }
 
 function overview(dish) {
-    var html = "<div class='dish col-md-4'>";
+    var html = "<div class='dish col-md-5'>";
     html += "<p class='title'>" + dish.name + "</p>";
     html += "<div class='img' style='background-image: url(images/" + dish.image + ")'/>";
     html += "<p class='description'>" + dish.description + "</p>";
