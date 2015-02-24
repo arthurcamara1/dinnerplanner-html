@@ -2,8 +2,7 @@
 var summaryView = function(container, model,dish,id) {
 
     this.render = function() {
-        var dishes = model.getAllDishes(dish);
-        var menudishes = model.getFullMenu();
+        var dishes = model.getFullMenu();
         var price = model.getTotalMenuPrice();
         var guests = model.getNumberOfGuests();
         var dprice=0;
@@ -17,8 +16,8 @@ var summaryView = function(container, model,dish,id) {
         html += "</tr>";
         html += "</thead>";
         html += "<tbody>";
-        for (var i = 0; i < menudishes.length; i++) {
-            var mdish = menudishes[i];
+        for (var i = 0; i < dishes.length; i++) {
+            var mdish = dishes[i];
             dprice = model.getDishPrice(mdish.id);
             html += (menudishTemplate(mdish,guests,dprice));
             dprice=0;
@@ -50,7 +49,7 @@ function menudishTemplate(dish,guests,price) {
     var html = "<tr>";
     html += "<th>" + guests + "</th>";
     html += "<th>" + dish.name + "</th>";
-    html += "<th>" + price * guests + "</th>";
+    html += "<th>" + price + "</th>";
     html += "</tr>";
     return html;
 }

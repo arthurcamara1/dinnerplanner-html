@@ -14,8 +14,8 @@ $(function() {
 	var sumController = new summaryController(c,sumView,model);
 	sumView.render();
 	var dView = new dishesView($("#dishes"), model);
-	//var dController = new dishesViewController(dView,model);
-	dView.render();
+	var dController = new dishesController(c,dView,model);
+	dView.render("starter","");
 	var dView1 = new dishesView($("#select"), model);
 	//var d1Controller = new dishesView1Controller(dView1,model);
 	dView1.render();

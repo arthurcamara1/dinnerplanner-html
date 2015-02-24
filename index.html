@@ -78,10 +78,9 @@
                         </div>
                         <div class="form-group">
                             <select type="type" class="form-control" id="type" placeholder="Dish">
-                                <option>Main</option>
-                                <option>Salads</option>
-                                <option>Starter</option>
-                                <option>Dessert</option>
+                                <option id="starter" selected>Starters</option>
+                                <option id="main">Main</option>
+                                <option id="dessert">Dessert</option>
                             </select>
                         </div>
                     </form>
@@ -92,7 +91,7 @@
     </div>
 
 <!-- DISH OVEVIEW -->
-    <div id="dish_overview" class="dish_overview contianer-fluid">
+    <div id="dish_overview" class="dish_overview container-fluid">
 
         <div class="row-fluid header1">
             <div class="span12">
@@ -187,6 +186,7 @@
     <script src="js/controller/summaryController.js"></script>
     <script src="js/controller/selectedController.js"></script>
     <script src="js/controller/preparationController.js"></script>
+    <script src="js/controller/dishesController.js"></script>
     <script src="js/app.js"></script>
 </body>
 
