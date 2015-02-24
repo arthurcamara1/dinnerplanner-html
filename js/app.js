@@ -6,7 +6,9 @@ $(function() {
 	model.addDishToMenu(1);
 	//And create the needed controllers and views
 	var c = new controller();
-	c.update(0); 
+
+	//show home page first
+	c.update('home'); 
 	
 	var hController = new homeController(c);
 	var sumView = new summaryView($("#summary"),model, "main dish",0);

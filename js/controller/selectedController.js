@@ -1,13 +1,11 @@
 var selectedController = function(c,view,model){
 	
+    $("#print").click(function() {
+		c.update('preparation');
+	});
 
-    document.getElementById("print").addEventListener("click", function(){
-            c.update(3);
-        
-    });
-    document.getElementById("back").addEventListener("click", function(){
-            c.update(1);
-        
-    });
+    $("#back").click(function() {
+		c.update('search');
+	});
 
 }

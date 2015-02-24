@@ -1,14 +1,12 @@
-var dishesController = function(c,view,model){
-	
+var dishesController = function(c, view, model) {
 
-    document.getElementById("starter").addEventListener("click", function(){
-          	view.update("starter");
+    $("#type").on('change', function() {
+        var type = $("#type").val();
+        model.setCurrentType(type);
     });
-    document.getElementById("main").addEventListener("click", function(){
-          	view.update("main dish");
-    });
-    document.getElementById("dessert").addEventListener("click", function(){
-          	view.update("dessert");
+
+    $("#dishes").on('click', '.dish', function() {
+        view.subpage('search_dish_overview');
     });
 
 }

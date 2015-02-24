@@ -1,15 +1,13 @@
 var summaryController = function(c,view,model){
 	
-	document.getElementById("guests").addEventListener("click", function(){
+	$("#guests").on("keyup", function(){
            var guests= $('#guests').val()
-           model.setNumberOfGuests (guests);
+           model.setNumberOfGuests(guests);
            view.update();
-        
     });
 
-    document.getElementById("confirm").addEventListener("click", function(){
-            c.update(2);
-        
-    });
+	$("#confirm").click(function() {
+		c.update('overview');
+	});
 
 }
