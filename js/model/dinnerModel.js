@@ -3,7 +3,8 @@ var DinnerModel = function() {
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
-
+	this.addObserver = function(observer) {};
+	var notifyObservers = function(obj) {};
 	this.NumberOfGuests;
 	this.SelectedDishes = [];
 	this.AllIngredients;
@@ -11,6 +12,7 @@ var DinnerModel = function() {
 	
 	this.setNumberOfGuests = function(num) {
 		this.NumberOfGuests=num;
+		notifyObservers("guests");
 	}
 
 	// should return 
@@ -94,6 +96,7 @@ var DinnerModel = function() {
 			}
 			if (flag===0) this.SelectedDishes[this.SelectedDishes.length] = this.getDish(id);
 		}
+		notifyObservers("add");
 	}
 
 	//Removes dish from menu
@@ -104,6 +107,7 @@ var DinnerModel = function() {
 			if (this.SelectedDishes[index].id === id) 
 				this.SelectedDishes.splice(index,1);
 		}
+		notifyObservers("remove");
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
