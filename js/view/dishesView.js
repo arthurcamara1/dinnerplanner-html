@@ -1,16 +1,20 @@
 //ExampleView Object constructor
 var dishesView = function(container, model) {
 
-    this.render = function(dish , action) {
-        if (action==="refresh"){
-            $( ".dish" ).remove();
-        }
-        var dishes = model.getAllDishes(dish);
+    this.render = function(type) {
+        var dishes = model.getAllDishes(type);
         for (var i = 0; i < dishes.length; i++) {
             var dish = dishes[i];
             container.append(dishTemplate(dish));
         };
     }
+
+    this.update = function(type) {
+        $( ".dish" ).remove();
+        this.render(type);
+}
+
+    
 }
 
 function dishTemplate(dish) {

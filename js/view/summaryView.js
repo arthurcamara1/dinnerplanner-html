@@ -5,6 +5,9 @@ var summaryView = function(container, model,dish,id) {
         var dishes = model.getFullMenu();
         var price = model.getTotalMenuPrice();
         var guests = model.getNumberOfGuests();
+        if (guests===undefined){
+            guests=0;
+        }
         var dprice=0;
         var html = "<table class='table'>" ;
         html += "<table class='table'>";
@@ -42,6 +45,11 @@ var summaryView = function(container, model,dish,id) {
         html += "</table>";
         
         container.append(html);
+    }
+
+    this.update = function(type) {
+        $( ".table" ).remove();
+        this.render();
     }
 }
 
