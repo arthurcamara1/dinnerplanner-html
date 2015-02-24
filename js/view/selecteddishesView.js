@@ -1,6 +1,6 @@
 //ExampleView Object constructor
 var selecteddishesView = function(container, model) {
-    model.addObserver(this);
+    
     this.render = function() {
        
 		var dishes = model.getFullMenu();
