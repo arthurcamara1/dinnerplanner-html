@@ -14,7 +14,16 @@ body {
     margin-top: 20px;
 }
 
-#dishes .img {
+#dishes .dish {
+    padding-top: 15px; 
+    cursor: pointer;
+}
+#dishes .dish:hover {
+    cursor: pointer;
+    background-color: #F2F2EC;
+}
+
+#dishes .dish .img {
     overflow: hidden;
     width: 100%;
     height: 110px;
@@ -22,7 +31,7 @@ body {
     background-size: cover; 
     background-repeat: no-repeat;
 }
-#dishes .title {
+#dishes .dish .title {
     font-weight: bold;
 }
 

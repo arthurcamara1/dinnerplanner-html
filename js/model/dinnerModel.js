@@ -1,5 +1,5 @@
 //DinnerModel Object constructor
-var DinnerModel = function() {
+var DinnerModel = function(initial_type) {
 
     var _observers = [];
     this.addObserver = function(observer) {
@@ -13,41 +13,75 @@ var DinnerModel = function() {
         };
     };
 
-    this.NumberOfGuests;
-    this.current_type = 'stater';
-    this.SelectedDishes = [];
-    this.AllIngredients;
-    this.TotalMenuPrice;
+    this.num_guests;
+    this.current_type = 'starter';
+    this.current_filter = '';
+    this.current_dish = 1;
+    this.selected_dishes = [];
+    this.all_ingredients;
+    this.total_menu_price;
 
     this.setCurrentType = function(type) {
         this.current_type = type;
-        notifyObservers("dish_type");
+        notifyObservers({
+            change: "dish_type",
+            type: this.current_type,
+            filter: this.current_filter
+        });
     }
+
+    this.setCurrentFilter = function(filter) {
+        this.current_filter = filter;
+        notifyObservers({
+            change: "dish_type",
+            type: this.current_type,
+            filter: this.current_filter
+        });
+    }
+
     this.getCurrentType = function() {
         return this.current_type;
     }
+    this.getCurrentFilter = function() {
+        return this.current_filter;
+    }
+
+    this.setCurrentDish = function(dish) {
+        this.current_dish = dish;
+        notifyObservers({
+            change: "selected_dish",
+            dish: this.current_dish
+        });
+    }
+
+    this.getCurrentDish = function() {
+        return this.current_dish;
+    }
 
     this.setNumberOfGuests = function(num) {
-        this.NumberOfGuests = num;
-        notifyObservers("guests");
+        this.num_guests = parseInt(num,10) || 0;
+        notifyObservers({
+            change: "guests",
+            number: num
+        });
     }
 
     // should return 
     this.getNumberOfGuests = function() {
         //TODO Lab 2
-        if (this.NumberOfGuests === undefined) {
+        if (this.num_guests === undefined) {
             return 0;
-        } else return this.NumberOfGuests;
+        } else return this.num_guests;
     }
 
     //Returns the dish that is on the menu for selected type 
     this.getSelectedDish = function(type) {
         //TODO Lab 2
         var index;
-        for (index = 0; index < this.SelectedDishes.length; index++) {
-            id1 = this.SelectedDishes[index].id;
+        for (index = 0; index < this.selected_dishes.length; index++) {
+            id1 = this.selected_dishes[index].id;
             if (this.getDish(id1).type === type) {
-                return this.SelectedDishes[index];
+                return this.selected_dishes[index];
             }
         }
         return null;
@@ -57,76 +91,91 @@ var DinnerModel = function() {
     //Returns all the dishes on the menu.
     this.getFullMenu = function() {
         //TODO Lab 2
-        return this.SelectedDishes;
+        return this.selected_dishes;
     }
 
     //Returns all ingredients for all the dishes on the menu.
     this.getAllIngredients = function() {
         //TODO Lab 2
         var index;
-        this.AllIngredients = [];
-        for (index = 0; index < this.SelectedDishes.length; index++) {
-            this.AllIngredients = this.AllIngredients.concat(this.SelectedDishes[index].ingredients);
+        this.all_ingredients = [];
+        for (index = 0; index < this.selected_dishes.length; index++) {
+            this.all_ingredients = this.all_ingredients.concat(this.selected_dishes[index].ingredients);
         }
-        return this.AllIngredients;
+        return this.all_ingredients;
     }
 
     //Returns the total price of the menu (all the ingredients multiplied by number of guests).
     this.getTotalMenuPrice = function() {
         //TODO Lab 2
-        this.TotalMenuPrice = 0;
+        this.total_menu_price = 0;
         var guests = this.getNumberOfGuests();
         var ingr = this.getAllIngredients();
         var index;
         for (index = 0; index < ingr.length; index++) {
-            this.TotalMenuPrice = ingr[index].price * guests + this.TotalMenuPrice;
+            this.total_menu_price = ingr[index].price * guests + this.total_menu_price;
         }
-        return this.TotalMenuPrice;
+        return this.total_menu_price;
     }
 
     this.getDishPrice = function(id) {
         //TODO Lab 2
-        this.price = 0;
+        var price = 0;
         var dish = this.getDish(id);
-        var guests = this.getNumberOfGuests();
         var index;
         for (index = 0; index < dish.ingredients.length; index++) {
-            this.price = dish.ingredients[index].price * guests + this.price;
+            price += dish.ingredients[index].price;
         }
-        return this.price;
+        return price;
     }
 
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function(id) {
+
+    	for(var i=0; i<this.selected_dishes.length; i++) {
+    		id1 = this.selected_dishes[i].id;
+    		if(id1 == id) return;
+    	}
+
+    	this.selected_dishes.push(this.getDish(id));
+    	notifyObservers({
+            change: "add",
+            dishes: this.selected_dishes
+        });
+
         //TODO Lab 2 
-        var index,
-            id1,
-            flag = 0;
-        if (this.SelectedDishes.length === 0) this.SelectedDishes[0] = this.getDish(id)
-        else {
-            for (index = 0; index < this.SelectedDishes.length; index++) {
-                id1 = this.SelectedDishes[index].id;
-                if (this.getDish(id1).type === this.getDish(id).type) {
-                    this.SelectedDishes[index] = this.getDish(id);
-                    flag = 1;
-                    break;
-                }
-            }
-            if (flag === 0) this.SelectedDishes[this.SelectedDishes.length] = this.getDish(id);
-        }
-        notifyObservers("add");
+        // var index,
+        //     id1,
+        //     flag = 0;
+        // if (this.selected_dishes.length === 0) this.selected_dishes[0] = this.getDish(id)
+        // else {
+        //     for (index = 0; index < this.selected_dishes.length; index++) {
+        //         id1 = this.selected_dishes[index].id;
+        //         if (this.getDish(id1).type === this.getDish(id).type) {
+        //             this.selected_dishes[index] = this.getDish(id);
+        //             flag = 1;
+        //             break;
+        //         }
+        //     }
+        //     if (flag === 0) this.selected_dishes[this.selected_dishes.length] = this.getDish(id);
+        // }
+        // notifyObservers({
+        //     change: "add"
+        // });
     }
 
     //Removes dish from menu
     this.removeDishFromMenu = function(id) {
         //TODO Lab 2
         var index;
-        for (index = 0; index < this.SelectedDishes.length; index++) {
-            if (this.SelectedDishes[index].id === id)
-                this.SelectedDishes.splice(index, 1);
+        for (index = 0; index < this.selected_dishes.length; index++) {
+            if (this.selected_dishes[index].id === id)
+                this.selected_dishes.splice(index, 1);
         }
-        notifyObservers("remove");
+        notifyObservers({
+            change: "remove"
+        });
     }
 
     //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
@@ -137,13 +186,17 @@ var DinnerModel = function() {
             var found = true;
             if (filter) {
                 found = false;
-                $.each(dish.ingredients, function(index, ingredient) {
-                    if (ingredient.name.indexOf(filter) != -1) {
-                        found = true;
-                    }
-                });
-                if (dish.name.indexOf(filter) != -1) {
+                filter = filter.toLowerCase();
+                var name = dish.name.toLowerCase();
+                if (name.indexOf(filter) != -1) {
                     found = true;
+                } else {
+                    $.each(dish.ingredients, function(index, ingredient) {
+                        var ing = ingredient.name.toLowerCase();
+                        if (ing.indexOf(filter) != -1) {
+                            found = true;
+                        }
+                    });
                 }
             }
             return dish.type == type && found;

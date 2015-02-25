@@ -1,7 +1,15 @@
 //ExampleView Object constructor
 var preparationView = function(container, model) {
 
+    //this will observe changes to the model
+    model.addObserver(this);
+
+    var dishes_container = container.find("#prep"),
+        guests_container = container.find("#preparation_guests");
+
     this.render = function() {
+        guests_container.html(model.getNumberOfGuests());
+        dishes_container.html('');
         var dishes = model.getFullMenu();
         var html;
         html = "<div class=' preparation col-md-10'>";
@@ -12,9 +20,15 @@ var preparationView = function(container, model) {
         };
         html += "</table>";
         html += "</div>";
-        container.append(html);
-                
-        
+        dishes_container.html(html);
+    }
+
+    this.update = function(changes) {
+        if(changes.change == 'guests' ||
+           changes.change == 'add' ||
+           changes.change == 'remove' ) {
+            this.render();
+        }
     }
 }
 
