@@ -20,6 +20,7 @@ var DinnerModel = function(initial_type) {
     this.selected_dishes = [];
     this.all_ingredients;
     this.total_menu_price;
+    this.current_pending_value = 0;
 
     this.setCurrentType = function(type) {
         this.current_type = type;
@@ -56,6 +57,18 @@ var DinnerModel = function(initial_type) {
 
     this.getCurrentDish = function() {
         return this.current_dish;
+    }
+
+    this.setCurrentPendingValue = function(value) {
+        this.current_pending_value = value;
+        notifyObservers({
+            change: "pending",
+            pending: value
+        });
+    }
+
+    this.getCurrentPendingValue = function() {
+        return this.current_pending_value;
     }
 
     this.setNumberOfGuests = function(num) {
@@ -133,36 +146,37 @@ var DinnerModel = function(initial_type) {
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function(id) {
 
-    	for(var i=0; i<this.selected_dishes.length; i++) {
-    		id1 = this.selected_dishes[i].id;
-    		if(id1 == id) return;
-    	}
+    	// for(var i=0; i<this.selected_dishes.length; i++) {
+    	// 	id1 = this.selected_dishes[i].id;
+    	// 	if(id1 == id) return;
+    	// }
 
-    	this.selected_dishes.push(this.getDish(id));
-    	notifyObservers({
+    	// this.selected_dishes.push(this.getDish(id));
+    	// notifyObservers({
+     //        change: "add",
+     //        dishes: this.selected_dishes
+     //    });
+
+        // TODO Lab 2 
+        var index,
+            id1,
+            flag = 0;
+        if (this.selected_dishes.length === 0) this.selected_dishes[0] = this.getDish(id)
+        else {
+            for (index = 0; index < this.selected_dishes.length; index++) {
+                id1 = this.selected_dishes[index].id;
+                if (this.getDish(id1).type === this.getDish(id).type) {
+                    this.selected_dishes[index] = this.getDish(id);
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag === 0) this.selected_dishes[this.selected_dishes.length] = this.getDish(id);
+        }
+        notifyObservers({
             change: "add",
             dishes: this.selected_dishes
         });
-
-        //TODO Lab 2 
-        // var index,
-        //     id1,
-        //     flag = 0;
-        // if (this.selected_dishes.length === 0) this.selected_dishes[0] = this.getDish(id)
-        // else {
-        //     for (index = 0; index < this.selected_dishes.length; index++) {
-        //         id1 = this.selected_dishes[index].id;
-        //         if (this.getDish(id1).type === this.getDish(id).type) {
-        //             this.selected_dishes[index] = this.getDish(id);
-        //             flag = 1;
-        //             break;
-        //         }
-        //     }
-        //     if (flag === 0) this.selected_dishes[this.selected_dishes.length] = this.getDish(id);
-        // }
-        // notifyObservers({
-        //     change: "add"
-        // });
     }
 
     //Removes dish from menu

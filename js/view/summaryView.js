@@ -4,20 +4,28 @@ var summaryView = function(container, model,dish,id) {
     //this will observe changes to the model
     model.addObserver(this);
 
+    var container_summary = container.find("#summary_table");
+    var container_guests = container.find("#guests");
+    var confirm_button = container.find("#confirm");
+
     this.render = function() {
 
-        container.html('');
 
         var dishes = model.getFullMenu();
         var price = model.getTotalMenuPrice();
         var guests = model.getNumberOfGuests();
+        var pending = model.getCurrentPendingValue() * guests;
         if (guests===undefined){
             guests=0;
         }
         var dprice=0;
-        var html = "<table class='table'>" ;
-        html += "<table class='table'>";
-        html += "<thead>";
+
+        container_summary.html('');
+        if(!container_guests.is(":focus")) {
+            container_guests.val(guests);
+        }
+
+        html = "<thead>";
         html += "<tr>";
         html += "<th></th>";
         html += "<th>Dish Name</th>";
@@ -36,26 +44,28 @@ var summaryView = function(container, model,dish,id) {
         html += "<tr>";
         html += "<th></th>";
         html += "<th>Pending</th>";
-        if (id===0){
-            html += "<th>$ 0 </th>";
-        }else{
-            html += "<th>$ " + (model.getDishPrice(id) * guests).toFixed(2) + "</th>";
-        }
+        html += "<th>$ " + (pending).toFixed(2) + "</th>";
         html += "</tr>";
         html += "<tr>";
         html += "<th></th>";
         html += "<th>SEK</th>";
-        html += "<th>$ " + price.toFixed(2) + "</th>";
+        html += "<th>$ " + (price + pending).toFixed(2) + "</th>";
         html += "</tr>";
         html += "</tfoot>";
-        html += "</table>";
         
-        container.html(html);
+        container_summary.html(html);
+
+        if(guests > 0 && price > 0) {
+            confirm_button.removeClass('hidden');
+        } else {
+            confirm_button.addClass('hidden');
+        }
     }
 
     this.update = function(changes) {
         if(changes.change == 'guests' ||
            changes.change == 'add' ||
+           changes.change == 'pending'||
            changes.change == 'remove' ) {
             this.render();
         }
@@ -64,9 +74,9 @@ var summaryView = function(container, model,dish,id) {
 
 function menudishTemplate(dish,guests,price) {
     var html = "<tr>";
-    html += "<th>" + guests + "</th>";
-    html += "<th>" + dish.name + "</th>";
-    html += "<th>$ " + price.toFixed(2) + "</th>";
+    html += "<td>" + guests + "</td>";
+    html += "<td>" + dish.name + "</td>";
+    html += "<td>$ " + price.toFixed(2) + "<span class='remove_dish' data-dish='"+dish.id+"'>x</span></td>";
     html += "</tr>";
     return html;
 }

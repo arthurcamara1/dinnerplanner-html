@@ -1,29 +1,39 @@
 var dishesController = function(c, view, model) {
 
-    $("#type").on('change', function() {
+    view.find("#type").on('change', function() {
         var type = $("#type").val();
         model.setCurrentType(type);
     });
 
-    $("#search_dishes_field").on('keyup', function() {
+    view.find("#search_dishes_field").on('keyup', function() {
         var terms = $("#search_dishes_field").val();
         model.setCurrentFilter(terms);
     });
 
-    $("#dishes").on('click', '.dish', function() {
+    view.find("#dishes").on('click', '.dish', function() {
         var dish = parseInt($(this).attr("data-dish"), 10);
         model.setCurrentDish(dish);
+        var value = model.getDishPrice(dish);
+        console.log(value);
+        model.setCurrentPendingValue(value);
         view.subpage('search_dish_overview');
     });
 
-    $("#sdish").on('click', '#sback', function() {
+    view.find("#sdish").on('click', '#sback', function() {
+        model.setCurrentPendingValue(0);
         view.subpage('search_dishes');
     });
 
-    $("#sdish").on('click', '#confirm_dish', function() {
+    view.find("#sdish").on('click', '#confirm_dish', function() {
         var dish = parseInt($(this).attr("data-dish"), 10);
         model.addDishToMenu(dish);
+        model.setCurrentPendingValue(0);
         view.subpage('search_dishes');
+    });
+
+    view.find("#summary_table").on('click', '.remove_dish', function() {
+        var dish = parseInt($(this).attr("data-dish"), 10);
+        model.removeDishFromMenu(dish);
     });
 
 }

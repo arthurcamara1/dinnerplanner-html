@@ -3,9 +3,6 @@ $(function() {
 	var model = new DinnerModel();
 	//And create the needed controllers and views
 	var c = new controller();
-
-	//show home page first
-	c.update('home'); 
 	
 	var hController = new homeController(c);
 	var sumView = new summaryView($("#summary"),model, "main dish",0);
@@ -23,5 +20,9 @@ $(function() {
 	var prepView = new preparationView($("#preparation"), model);
 	var pController = new preparationController(c);
 	prepView.render();
+
+	//show home page first
+	c.update('home'); 
+	model.setNumberOfGuests(2);
 	
 });
